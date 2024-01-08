@@ -6,6 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.catatankeuangan.model.Pemasukan;
+import com.example.catatankeuangan.model.Pengeluaran;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "catatan_keuangan.db";
@@ -121,6 +127,149 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PEMASUKAN, COLUMN_ID_PEMASUKAN + " = ?",
                 new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+
+    public List<Pengeluaran> getPengeluaranList() {
+        List<Pengeluaran> pengeluaranList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                TABLE_PENGELUARAN,
+                new String[]{COLUMN_ID_PENGELUARAN, COLUMN_TANGGAL_PENGELUARAN, COLUMN_NOMINAL_PENGELUARAN, COLUMN_KATEGORI_PENGELUARAN, COLUMN_KETERANGAN_PENGELUARAN},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_PENGELUARAN));
+                String tanggal = cursor.getString(cursor.getColumnIndex(COLUMN_TANGGAL_PENGELUARAN));
+                String nominal = cursor.getString(cursor.getColumnIndex(COLUMN_NOMINAL_PENGELUARAN));
+                String kategori = cursor.getString(cursor.getColumnIndex(COLUMN_KATEGORI_PENGELUARAN));
+                String keterangan = cursor.getString(cursor.getColumnIndex(COLUMN_KETERANGAN_PENGELUARAN));
+
+                Pengeluaran pengeluaran = new Pengeluaran(id, tanggal, nominal, kategori, keterangan);
+                pengeluaranList.add(pengeluaran);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return pengeluaranList;
+    }
+
+    public List<Pemasukan> getPemasukanList() {
+        List<Pemasukan> pemasukanList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                TABLE_PEMASUKAN,
+                new String[]{COLUMN_ID_PEMASUKAN, COLUMN_TANGGAL_PEMASUKAN, COLUMN_NOMINAL_PEMASUKAN, COLUMN_KATEGORI_PEMASUKAN, COLUMN_KETERANGAN_PEMASUKAN},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_PEMASUKAN));
+                String tanggal = cursor.getString(cursor.getColumnIndex(COLUMN_TANGGAL_PEMASUKAN));
+                String nominal = cursor.getString(cursor.getColumnIndex(COLUMN_NOMINAL_PEMASUKAN));
+                String kategori = cursor.getString(cursor.getColumnIndex(COLUMN_KATEGORI_PEMASUKAN));
+                String keterangan = cursor.getString(cursor.getColumnIndex(COLUMN_KETERANGAN_PEMASUKAN));
+
+                Pemasukan pemasukan = new Pemasukan(id, tanggal, nominal, kategori, keterangan);
+                pemasukanList.add(pemasukan);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        return pemasukanList;
+    }
+
+    public Pemasukan getPemasukanById(int pemasukanId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Pemasukan pemasukan = null;
+
+        Cursor cursor = db.query(
+                TABLE_PEMASUKAN,
+                new String[]{COLUMN_ID_PEMASUKAN, COLUMN_TANGGAL_PEMASUKAN, COLUMN_NOMINAL_PEMASUKAN, COLUMN_KATEGORI_PEMASUKAN, COLUMN_KETERANGAN_PEMASUKAN},
+                COLUMN_ID_PEMASUKAN + " = ?",
+                new String[]{String.valueOf(pemasukanId)},
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            pemasukan = new Pemasukan(
+                    cursor.getInt(cursor.getColumnIndex(COLUMN_ID_PEMASUKAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_TANGGAL_PEMASUKAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_NOMINAL_PEMASUKAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_KATEGORI_PEMASUKAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_KETERANGAN_PEMASUKAN))
+            );
+            cursor.close();
+        }
+
+        return pemasukan;
+    }
+
+    public void updatePemasukan(int pemasukanId, String tanggal, String nominal, String kategori, String keterangan) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TANGGAL_PEMASUKAN, tanggal);
+        values.put(COLUMN_NOMINAL_PEMASUKAN, nominal);
+        values.put(COLUMN_KATEGORI_PEMASUKAN, kategori);
+        values.put(COLUMN_KETERANGAN_PEMASUKAN, keterangan);
+
+        db.update(TABLE_PEMASUKAN, values, COLUMN_ID_PEMASUKAN + " = ?", new String[]{String.valueOf(pemasukanId)});
+        db.close();
+    }
+
+    public Pengeluaran getPengeluaranById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Pengeluaran pengeluaran = null;
+
+        Cursor cursor = db.query(
+                TABLE_PENGELUARAN,
+                new String[]{COLUMN_ID_PENGELUARAN, COLUMN_TANGGAL_PENGELUARAN, COLUMN_NOMINAL_PENGELUARAN, COLUMN_KATEGORI_PENGELUARAN, COLUMN_KETERANGAN_PENGELUARAN},
+                COLUMN_ID_PENGELUARAN + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            pengeluaran = new Pengeluaran(
+                    cursor.getInt(cursor.getColumnIndex(COLUMN_ID_PENGELUARAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_TANGGAL_PENGELUARAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_NOMINAL_PENGELUARAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_KATEGORI_PENGELUARAN)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_KETERANGAN_PENGELUARAN))
+            );
+            cursor.close();
+        }
+
+        return pengeluaran;
+    }
+
+    public void updatePengeluaran(int id, String tanggal, String nominal, String kategori, String keterangan) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TANGGAL_PENGELUARAN, tanggal);
+        values.put(COLUMN_NOMINAL_PENGELUARAN, nominal);
+        values.put(COLUMN_KATEGORI_PENGELUARAN, kategori);
+        values.put(COLUMN_KETERANGAN_PENGELUARAN, keterangan);
+
+        db.update(TABLE_PENGELUARAN, values, COLUMN_ID_PENGELUARAN + "=?", new String[]{String.valueOf(id)});
         db.close();
     }
 

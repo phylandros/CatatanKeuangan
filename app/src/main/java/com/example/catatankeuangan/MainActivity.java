@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         List<String> transactionList = new ArrayList<>();
         transactionList.add("Pengeluaran");
         transactionList.add("Pemasukan");
+        transactionList.add("Pemasukan Report");
+        transactionList.add("Pengeluaran Report");
         transactionList.add("Semua Transaksi");
         // Tambahkan transaksi lainnya sesuai kebutuhan
 

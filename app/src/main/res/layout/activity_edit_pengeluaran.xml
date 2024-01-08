@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditPengeluaranActivity"
+    android:orientation="vertical"
+    android:padding="25dp"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Transaksi"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="#0766AD"
+        android:fontFamily="sans-serif-black"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Transaksi"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:fontFamily="@font/robotobold"
+        android:layout_marginTop="35dp"
+        />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:hint="Masukan Tanggal (YYYY-MM-DD)"
+        android:inputType="date"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nominal"
+        android:textSize="18dp"
+        android:fontFamily="@font/robotobold"
+        android:textColor="#000"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:id="@+id/etnom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Masukkan Nominal"
+        android:inputType="number"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewDateLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jenis Item"
+        android:fontFamily="@font/robotobold"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:layout_marginTop="15dp"
+        />
+
+    <Spinner
+        android:id="@+id/spkat"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Keterangan"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:fontFamily="@font/robotobold"
+        android:layout_marginTop="15dp"
+        />
+
+    <EditText
+        android:id="@+id/etket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:hint="Masukkan Keterangan (Opsional)"
+        android:layout_marginTop="5dp"
+        />
+
+    <Button
+        android:id="@+id/btnsimpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan"
+        android:textColor="#FFF"
+        android:background="@drawable/shape"
+        android:layout_marginTop="25dp"
+
+        />
+
+</LinearLayout>

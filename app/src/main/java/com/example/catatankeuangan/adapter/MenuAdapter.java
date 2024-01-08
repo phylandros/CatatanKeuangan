@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.catatankeuangan.AllTransaksiActivity;
+import com.example.catatankeuangan.PemasukanReportActivity;
+import com.example.catatankeuangan.PengeluaranReportActivity;
 import com.example.catatankeuangan.R;
 import com.example.catatankeuangan.TransaksiActivity;
 
@@ -55,6 +57,20 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 // Pindah ke TransaksiActivity saat item Pemasukan diklik
                 Intent intent = new Intent(context, TransaksiActivity.class);
                 intent.putExtra("menu", "Pemasukan");
+                context.startActivity(intent);
+            });
+        } else if (menu.equals("Pengeluaran Report")) {
+            holder.imageViewIcon.setImageResource(R.drawable.salary);
+            holder.cardView.setOnClickListener(v -> {
+                // Pindah ke TransaksiActivity saat item Pemasukan diklik
+                Intent intent = new Intent(context, PengeluaranReportActivity.class);
+                context.startActivity(intent);
+            });
+        } else if (menu.equals("Pemasukan Report")) {
+            holder.imageViewIcon.setImageResource(R.drawable.salary);
+            holder.cardView.setOnClickListener(v -> {
+                // Pindah ke TransaksiActivity saat item Pemasukan diklik
+                Intent intent = new Intent(context, PemasukanReportActivity.class);
                 context.startActivity(intent);
             });
         } else if (menu.equals("Semua Transaksi")) {
