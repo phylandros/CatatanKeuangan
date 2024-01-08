@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">CatatKuy!</string>
+    <string name="kata_pembuka"> Selamat datang di aplikasi CatatKuy!
+    Mulailah mengelola finansial dengan lebih mudah dan efisien!</string>
+
+
+    <string-array name="kategori_transaksi">
+        <item>Makanan</item>
+        <item>Transportasi</item>
+        <item>Belanja</item>
+        <item>Hiburan</item>
+        <item>Gaji</item>
+        <item>Tagihan (Listrik, Air, Internet, dll.)</item>
+        <item>Kesehatan</item>
+        <item>Investasi</item>
+        <item>Donasi</item>
+        <item>Pendidikan</item>
+        <item>Liburan</item>
+    </string-array>
+
+</resources>
